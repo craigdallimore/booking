@@ -1,0 +1,91 @@
+@import "_colours.scss";
+@import "_breakpoints.scss";
+
+// Box Sixes
+$grid: 10px;
+
+// Gradient
+@mixin linear-gradient($from, $to, $ie: $useIEFilters) {
+    @if $ie != 1 { background-color: $to; }
+
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
+    background-image: -webkit-linear-gradient(top, $from, $to);
+    background-image: -moz-linear-gradient(top, $from, $to);
+    background-image: -ms-linear-gradient(top, $from, $to);
+    background-image: -o-linear-gradient(top, $from, $to);
+    background-image: linear-gradient(to bottom, $from 0%, $to 100%);
+
+    @if $ie == 1 {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+        -ms-filter: quote(progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}'));
+    }
+}
+
+@mixin radial-gradient($from, $to, $ie: $useIEFilters) {
+    @if $ie != 1 { background-color: $to; }
+
+    background: $to; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover, $from 0%, #7db9e8 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$from), color-stop(100%, $to)); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover, $from 0%,$to 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover, $from 0%,$to 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover, $from 0%,$to 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center, $from 0%,$to 100%); /* W3C */
+
+    @if $ie == 1 {
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    }
+}
+
+// Border
+@mixin border-radius($values) {
+    -webkit-border-radius: $values;
+    -moz-border-radius: $values;
+    -ms-border-radius: $values;
+    -o-webkit-border-radius: $values;
+    border-radius: $values;
+}
+
+// Box
+@mixin sqr($value) {
+    width: $value;
+    height: $value;
+}
+
+@mixin box-sizing($values) {
+    -webkit-box-sizing: $values;
+    -moz-box-sizing: $values;
+    -ms-box-sizing: $values;
+    -o-box-sizing: $values;
+    box-sizing: $values;
+}
+
+@mixin box-shadow($value) {
+    -webkit-box-shadow: #{$value};
+    -moz-box-shadow: #{$value};
+    -ms-box-shadow: #{$value};
+    -o-box-shadow: #{$value};
+    box-shadow: #{$value};
+}
+
+// Transform
+@mixin rotate ($deg) {
+    -webkit-transform: rotate(#{$deg}deg);
+    -moz-transform: rotate(#{$deg}deg);
+    -ms-transform: rotate(#{$deg}deg);
+    -o-transform: rotate(#{$deg}deg);
+    transform: rotate(#{$deg}deg);
+}
+
+// Transition
+@mixin transition($property, $duration, $ms: false) {
+    -webkit-transition: $property $duration ease-in-out;
+    -moz-transition: $property $duration ease-in-out;
+    -o-transition: $property $duration ease-in-out;
+    @if ($ms) {
+        -ms-transition: $property $duration ease-in-out;
+    }
+    transition: $property $duration ease-in-out;
+}
+
+

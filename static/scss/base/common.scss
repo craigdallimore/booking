@@ -1,0 +1,35 @@
+@import "_mixins";
+
+/* Globals
+---------------------------------------------------------------------------- */
+
+* {
+    @include box-sizing(border-box);
+}
+html, body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    @include radial-gradient($clr_bg, #000, 1);
+}
+
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: block;
+};
+
+.ir { /* Image Replacement */
+    text-indent: -999em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.icon {
+    display: inline-block;
+}
+
+.hide {
+  display: none;
+}
