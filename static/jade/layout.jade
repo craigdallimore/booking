@@ -5,7 +5,7 @@
 //if lte IE 8
     <html class='no-js oldie' lang='en'>
 
-//[if gt IE 8]<!
+//[if gt IE 8]><!
 html.no-js(lang='en')
     //<![endif]
     head
@@ -19,16 +19,16 @@ html.no-js(lang='en')
         meta(name='description', content= '')
         meta(name='author', content='Craig Dallimore')
 
-        link(rel='shortcut icon', type='image/png', href='/static/img/favicon.png')
+        link(rel='shortcut icon', type='image/png', href='static/favicon.png')
 
         //- CSS output from SASS / Grunt
-        link(rel='stylesheet', href='/static/dist/app.min.css')
+        link(rel='stylesheet', href='static/dist/app.min.css')
 
         //- Provides some CSS3 selectors for IE 6,7,8
         //if (gte IE 6)&(lte IE 8)
-            script(src='/static/js/libs/selectivizr-1.0.2.min.js')
+            script(src='static/js/libs/selectivizr-1.0.2.min.js')
 
-        script(src='/static/js/libs/modernizr-2.6.2.min.js')
+        script(src='static/js/libs/modernizr-2.6.2.min.js')
 
     body
         noscript
@@ -36,16 +36,19 @@ html.no-js(lang='en')
 
         block content
 
-        //- Load libraries from CDN
-        script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js' )
+        //if lt IE 9
+            script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js' )
+            script.
+                window.jQuery || document.write('<script src="static/js/libs/jquery-1.10.1.min.js"><\/script>')
 
-
-        //- Failing that, use local libraries
+        //[if gte IE 9]><!
+        script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js' )
         script.
-            window.jQuery || document.write('<script src="/static/js/libs/jquery-1.8.3.min.js"><\/script>')
+            window.jQuery || document.write('<script src="static/js/libs/jquery-2.0.2.min.js"><\/script>')
+        //<![endif]
 
         //- JavaScript output from Grunt
-        script(src='/static/dist/app.min.js')
+        script(src='static/dist/app.min.js')
 
 
 //- KAIZEN

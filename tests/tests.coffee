@@ -7,6 +7,8 @@ expect = chai.expect
 should = chai.should()
 chai.use sinonChai
 
+
 suite 'Booking', ->
-    test 'Application', ->
-        assert(App)
+    test 'Application loads', ->
+        assert App
+
