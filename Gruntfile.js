@@ -10,12 +10,6 @@ module.exports = function(grunt) {
             scss:       './static/scss/'
         },
         concat: {
-            js: {
-                src: [
-                    '<%= dirs.js %>App.js'
-                ],
-                dest: '<%= dirs.dist %>app.concat.js'
-            },
             css: {
                 src: [
                     '<%= dirs.css %>base/reset.css',
@@ -27,9 +21,22 @@ module.exports = function(grunt) {
             }
         },
         uglify: {
-            files: {
-                src: ['<%= concat.js.dest %>'],
-                dest: '<%= dirs.dist %>app.min.js'
+            dev: {
+                options: {
+                    sourceMapRoot: '../../',
+                    sourceMap: 'app.min.js.map',
+                    mangle: false
+                },
+                files: {
+                    '<%= dirs.dist %>app.min.js': [
+                        '<%= dirs.js %>App.js',
+                        '<%= dirs.js %>View/View.js',
+                        '<%= dirs.js %>View/FormView.js',
+                        '<%= dirs.js %>View/ListView.js',
+                        '<%= dirs.js %>View/TabsView.js',
+                        '<%= dirs.js %>Main.js'
+                    ]
+                }
             }
         },
         cssmin: {
@@ -58,7 +65,7 @@ module.exports = function(grunt) {
         },
         watch: {
             scripts: {
-                files: ['<%= concat.js.src %>'],
+                files: '<%= dirs.js %>**/*.js',
                 tasks: 'js'
             },
             styles: {
@@ -85,7 +92,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jade');
 
     grunt.registerTask('dev', ['js', 'css']);
-    grunt.registerTask('js', ['concat:js', 'uglify']);
+    grunt.registerTask('js', ['uglify']);
     grunt.registerTask('css', ['concat:css', 'cssmin']);
     grunt.registerTask('sass', ['compass', 'css']);
 };

@@ -5,4 +5,36 @@ block title
 
 block content
     h1 Booking Test
-    section
+
+    nav
+        ul
+            li
+                a.current(href="#booking") Add booking
+            li
+                a(href="#listings") Bookings List
+
+    section#booking
+        form(method="post")
+            fieldset
+                label(for="first_name") First name
+                input#first_name(type="text", maxlength="80")
+            fieldset
+                label(for="last_name") Last name
+                input#last_name(type="text", maxlength="80")
+            fieldset
+                label(for="dining_date") Dining Date
+                input#dining_date(type="text", maxlength="10")
+            fieldset
+                label(for="num_covers") Number of covers
+                input#num_covers(type="number", maxlength="3")
+            fieldset
+                label(for="phone") Phone number
+                input#phone(type="tel", maxlength="20")
+            fieldset
+                label(for="email") email
+                input#phone(type="email", maxlength="80")
+            fieldset
+                input#submit(type="submit", value="Submit")
+
+    section#listings
+        ul

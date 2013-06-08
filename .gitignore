@@ -3,4 +3,5 @@ static/.sass-cache/
 static/css/
 static/dist/
 *.swp
+*.map
 index.html
