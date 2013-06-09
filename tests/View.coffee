@@ -7,6 +7,7 @@ expect = chai.expect
 should = chai.should()
 chai.use sinonChai
 
+App = {}
 view = require '../static/js/View/View'
 
 suite 'View', ->

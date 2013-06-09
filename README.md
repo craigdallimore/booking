@@ -26,3 +26,17 @@ Seated
 
 The test needs to be done using HTML and JavaScript but the rest is up to you.
 Overall we are just going to be using this code to understand how your brain works!
+
+
+TODO
+- Party Model ( with fields / validation )
+- Bind FormView to party model and validate
+- Validation strategy pattern
+- Show validation errors
+- Clear validation errors
+- 'save' model, push to localstorage
+- tab controls
+- create collection
+- create collectionView
+- load collection from localstorage
+- update collectionView model when changing select box
