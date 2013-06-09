@@ -2,7 +2,17 @@
 
     function init() {
 
-        var partyModel = new App.PartyModel();
+        var items = [];
+
+        if (Modernizr.localstorage && localStorage.getItem('bookings')) {
+            items = JSON.parse(localStorage.getItem('bookings'));
+        }
+
+        var bookingCollection = new App.BookingCollection(items),
+            partyModel = new App.PartyModel(),
+            formView = new App.FormView({ el: $('#booking form'), model: partyModel }),
+            tabsView = new App.TabsView({ el: $('#tabs') }),
+            listView = new App.ListView({ el: $('#listings ul') });
 
         partyModel.set({
             'fields': {
@@ -15,13 +25,16 @@
             }
         });
 
-        var formView = new App.FormView({ el: $('#booking form'), model: partyModel });
-        var tabsView = new App.TabsView({ el: $('#tabs') });
-        var listView = new App.ListView({ el: $('#listings ul') });
-
         formView.bindErrors();
     }
 
+    function saveBookings(_, bookings) {
+        if (Modernizr.localstorage && localStorage.getItem('bookings')) {
+            items = JSON.parse(localStorage.getItem('bookings'));
+        }
+    }
+
+    App.subscribe('saveBookings', saveBookings);
 
     App.init = init;
 

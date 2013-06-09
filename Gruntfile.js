@@ -37,6 +37,8 @@ module.exports = function(grunt) {
                         '<%= dirs.js %>View/FormView.js',
                         '<%= dirs.js %>View/ListView.js',
                         '<%= dirs.js %>View/TabsView.js',
+                        '<%= dirs.js %>Collection/Collection.js',
+                        '<%= dirs.js %>Collection/BookingCollection.js',
                         '<%= dirs.js %>Main.js'
                     ]
                 }

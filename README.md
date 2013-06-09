@@ -29,14 +29,22 @@ Overall we are just going to be using this code to understand how your brain wor
 
 
 TODO
-- Party Model ( with fields / validation )
-- Bind FormView to party model and validate
-- Validation strategy pattern
-- Show validation errors
-- Clear validation errors
-- 'save' model, push to localstorage
+- 'save' model, push to bookingCollection
+- check for no dupes in bookingCollection?
+- create collection from localstorage
+- add to collection and save
+- clear form
+- create bookingItemView
+- template
+- update model when changing select box
+- reflect changes in bookingItemView
 - tab controls
-- create collection
-- create collectionView
-- load collection from localstorage
-- update collectionView model when changing select box
+- bbqH
+
+Later:
+- jQuery UI datepicker
+- purty CSS!
+- Validation strategy pattern
+- reset form: clears form, errors
+- permit forcing a booking with incomplete data
+- cross browser testing inc ie8
