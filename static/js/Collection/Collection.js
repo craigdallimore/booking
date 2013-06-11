@@ -10,14 +10,6 @@
     Collection.prototype.forEach = function(fn) {
         this.items.forEach(fn);
     };
-    Collection.toJSON = function() {
-        var json = [];
-        this.items.forEach(function(item) {
-            if(typeof item.toJSON === 'undefined') return;
-            json.push(item.toJSON());
-        });
-        return json;
-    },
     Collection.prototype.get = function(query) {
         var results = [];
         this.items.forEach(function(item) {

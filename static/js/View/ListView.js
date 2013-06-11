@@ -13,10 +13,8 @@
 
             collection.push(itemView);
             el.append(itemView.render().el);
-            console.log(itemView);
-        };
+            itemView.bindControls();
 
-        view.render = function render() {
         };
 
         return view;

@@ -2,7 +2,8 @@
 
     function init() {
 
-        var bookingCollection = new App.BookingCollection(),
+        var bookingCollection = new App.Collection(),
+            bookingStore =      new App.DataStore('booking'),
             partyModel =        new App.PartyModel(),
 
             formView = new App.FormView({
@@ -15,7 +16,7 @@
             }),
 
             listView = new App.ListView({
-                el: $('#listings ul'),
+                el: $('#listings tbody'),
                 collection: bookingCollection,
                 itemView: App.BookingItemView
             });
@@ -33,18 +34,28 @@
 
         formView.bindErrors();
 
-        if (Modernizr.localstorage && localStorage.getItem('bookings')) {
-            JSON.parse(localStorage.getItem('bookings')).forEach(function(attrs) {
-                bookingCollection.push(new App.BookingModel(attrs));
-            });
-        }
+        bookingStore.getItems().forEach(addBooking);
 
-        function addBooking(_, attrs) {
-            console.log('add booking', attrs);
+        function addBooking(attrs) {
             listView.add(new App.BookingModel(attrs));
         }
 
-        App.subscribe('newParty', addBooking);
+        function onNewParty(_, attrs) {
+            formView.clearForm();
+            bookingStore.add(attrs);
+            addBooking(attrs);
+        }
+
+        function onStatusUpdate() {
+            var items = [];
+            bookingCollection.forEach(function(bookingView) {
+                items.push(bookingView.model.toJSON());
+            });
+            bookingStore.setItems(items);
+        }
+
+        App.subscribe('newParty', onNewParty);
+        App.subscribe('status:update', onStatusUpdate);
     }
 
     App.init = init;

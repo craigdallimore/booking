@@ -47,6 +47,10 @@
                 el.find('.fieldError').remove();
             };
 
+            view.clearForm = function clearForm() {
+                el.find('#reset').trigger('click');
+            };
+
             el.on('submit', function(e) {
                 e.preventDefault();
                 var values = view.getFieldValues();

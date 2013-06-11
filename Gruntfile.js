@@ -30,6 +30,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%= dirs.dist %>app.min.js': [
                         '<%= dirs.js %>App.js',
+                        '<%= dirs.js %>DataStore.js',
                         '<%= dirs.js %>PubSub.js',
                         '<%= dirs.js %>Template.js',
                         '<%= dirs.js %>Model/Model.js',
@@ -41,7 +42,6 @@ module.exports = function(grunt) {
                         '<%= dirs.js %>View/TabsView.js',
                         '<%= dirs.js %>View/BookingItemView.js',
                         '<%= dirs.js %>Collection/Collection.js',
-                        '<%= dirs.js %>Collection/BookingCollection.js',
                         '<%= dirs.js %>Main.js'
                     ]
                 }
