@@ -7,13 +7,8 @@
         model.save = function save(_, attrs) {
 
             if (!model.validate(attrs)) return;
-
-            // Here the data could  be sent to a server with a database.
-            // For the purpose of this demo the localstorage API is used.
-            if (!Modernizr.localstorage) return;
-
-            console.log('ls detected');
             App.publish('newParty', [attrs]);
+
         };
 
         model.validate = function validate(attrs) {

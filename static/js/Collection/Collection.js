@@ -1,14 +1,23 @@
 (function(App) {
 
-    function Collection(items) {
-        this.items = items || [];
+    function Collection() {
+        this.items = [];
     }
+
     Collection.prototype.push = function(item) {
         this.items.push(item);
     };
     Collection.prototype.forEach = function(fn) {
         this.items.forEach(fn);
     };
+    Collection.toJSON = function() {
+        var json = [];
+        this.items.forEach(function(item) {
+            if(typeof item.toJSON === 'undefined') return;
+            json.push(item.toJSON());
+        });
+        return json;
+    },
     Collection.prototype.get = function(query) {
         var results = [];
         this.items.forEach(function(item) {
@@ -41,6 +50,7 @@
         this.items.sort(fn);
         return this;
     };
+
     App.Collection = Collection;
 
 } (App));

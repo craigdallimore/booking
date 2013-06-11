@@ -17,22 +17,22 @@ block content
         form(method="post")
             fieldset
                 label(for="first_name") First name
-                input#first_name(type="text", maxlength="80")
+                input#first_name(name="first_name", type="text", maxlength="80")
             fieldset
                 label(for="last_name") Last name
-                input#last_name(type="text", maxlength="80")
+                input#last_name(name="last_name", type="text", maxlength="80")
             fieldset
                 label(for="dining_date") Dining Date
-                input#dining_date(type="text", maxlength="10")
+                input#dining_date(name="dining_date", type="text", maxlength="10")
             fieldset
                 label(for="num_covers") Number of covers
-                input#num_covers(type="number", maxlength="3")
+                input#num_covers(name="num_covers", type="number", maxlength="3")
             fieldset
                 label(for="phone") Phone number
-                input#phone(type="tel", maxlength="20")
+                input#phone(name="phone", type="tel", maxlength="20")
             fieldset
                 label(for="email") email
-                input#email(type="email", maxlength="80")
+                input#email(name="email", type="email", maxlength="80")
             fieldset
                 input#submit(type="submit", value="Submit")
 

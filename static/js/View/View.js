@@ -12,8 +12,9 @@
             this.el.className = this.className || '';
         }
         if (this.template) {
+            var JSON = this.model.toJSON();
             this.el.innerHTML = '';
-            this.el.appendChild(this.template());
+            this.el.appendChild(this.template(JSON));
         }
         return this;
     };

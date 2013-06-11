@@ -1,7 +1,7 @@
 (function(App) {
 
-    function BookingCollection(items) {
-        var collection = new App.Collection(items);
+    function BookingCollection() {
+        var collection = new App.Collection();
 
         return collection;
     }

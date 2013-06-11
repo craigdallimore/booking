@@ -2,17 +2,23 @@
 
     function init() {
 
-        var items = [];
+        var bookingCollection = new App.BookingCollection(),
+            partyModel =        new App.PartyModel(),
 
-        if (Modernizr.localstorage && localStorage.getItem('bookings')) {
-            items = JSON.parse(localStorage.getItem('bookings'));
-        }
+            formView = new App.FormView({
+                el: $('#booking form'),
+                model: partyModel
+            }),
 
-        var bookingCollection = new App.BookingCollection(items),
-            partyModel = new App.PartyModel(),
-            formView = new App.FormView({ el: $('#booking form'), model: partyModel }),
-            tabsView = new App.TabsView({ el: $('#tabs') }),
-            listView = new App.ListView({ el: $('#listings ul') });
+            tabsView = new App.TabsView({
+                el: $('#tabs')
+            }),
+
+            listView = new App.ListView({
+                el: $('#listings ul'),
+                collection: bookingCollection,
+                itemView: App.BookingItemView
+            });
 
         partyModel.set({
             'fields': {
@@ -26,15 +32,20 @@
         });
 
         formView.bindErrors();
-    }
 
-    function saveBookings(_, bookings) {
         if (Modernizr.localstorage && localStorage.getItem('bookings')) {
-            items = JSON.parse(localStorage.getItem('bookings'));
+            JSON.parse(localStorage.getItem('bookings')).forEach(function(attrs) {
+                bookingCollection.push(new App.BookingModel(attrs));
+            });
         }
-    }
 
-    App.subscribe('saveBookings', saveBookings);
+        function addBooking(_, attrs) {
+            console.log('add booking', attrs);
+            listView.add(new App.BookingModel(attrs));
+        }
+
+        App.subscribe('newParty', addBooking);
+    }
 
     App.init = init;
 

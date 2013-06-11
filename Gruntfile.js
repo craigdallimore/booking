@@ -24,19 +24,22 @@ module.exports = function(grunt) {
             dev: {
                 options: {
                     sourceMapRoot: '../../',
-                    sourceMap: 'app.min.js.map',
+                    sourceMap: '<%= dirs.dist %>app.min.js.map',
                     mangle: false
                 },
                 files: {
                     '<%= dirs.dist %>app.min.js': [
                         '<%= dirs.js %>App.js',
                         '<%= dirs.js %>PubSub.js',
+                        '<%= dirs.js %>Template.js',
                         '<%= dirs.js %>Model/Model.js',
                         '<%= dirs.js %>Model/PartyModel.js',
+                        '<%= dirs.js %>Model/BookingModel.js',
                         '<%= dirs.js %>View/View.js',
                         '<%= dirs.js %>View/FormView.js',
                         '<%= dirs.js %>View/ListView.js',
                         '<%= dirs.js %>View/TabsView.js',
+                        '<%= dirs.js %>View/BookingItemView.js',
                         '<%= dirs.js %>Collection/Collection.js',
                         '<%= dirs.js %>Collection/BookingCollection.js',
                         '<%= dirs.js %>Main.js'
