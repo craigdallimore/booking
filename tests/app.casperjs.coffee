@@ -35,9 +35,6 @@ casper.start url, ->
     @click '#submit'
     @test.assertTextDoesntExist 'required', 'Validation messages are removed on successful submission'
 
-    #TODO: Reset form button should clear errors
-    #TODO: Granular error messages (not a valid email, not a valid date)
-
     formValues = @evaluate ->
         __utils__.getFormValues '#booking form'
 
@@ -60,8 +57,76 @@ casper.start url, ->
     @test.assertTextExists dummy_booking.phone,         'Phone number is shown'
     @test.assertTextExists dummy_booking.email,         'email is shown'
 
+    @fill '#booking form'
+        first_name:     dummy_booking.first_name
+        last_name:      dummy_booking.last_name
+
+    @click '#submit'
+    @test.assertTextExists 'required', 'Validation messages are showing'
+
+    @click '#reset'
+    @test.assertTextDoesntExist 'required', 'Resetting form clears error messages'
+
+    @fill '#booking form'
+        dining_date: 'not_a_date'
+        email: 'not_an_email'
+
+    @click '#submit'
+
+    @test.assertTextExists 'expects an email', 'The email field rejects emails without an \'@\' symbol'
+    @test.assertTextExists 'expects a date', 'The date field rejects a date not formatted 12/12/1981'
+
+    @fill '#booking form',
+        dining_date:    dummy_booking.dining_date
+        num_covers:     dummy_booking.num_covers
+        email:          dummy_booking.email
+
+    @click '#submit'
+
+    @test.assertTextDoesntExist 'expects an email', 'The email field checks emails have an \'@\' symbol'
+    @test.assertTextDoesntExist 'expects a date', 'The date field expects a date such as 12/12/1981'
+    @test.assertTextDoesntExist 'expects a number', 'The number of covers field expects a number'
+
+    @test.assertVisible '#forceSubmit', 'Force submit button is visible'
+    @test.assertNotVisible '#submit', 'Submit button has been hidden'
+
+    numListItems = @evaluate ->
+        __utils__.findAll('#listings ul li').length
+
+    @click '#forceSubmit'
+
+    newNumListItems =  @evaluate ->
+        __utils__.findAll('#listings tbody tr').length
+
+    @test.assertNotEquals numListItems, newNumListItems, 'Number of items has increased'
+
+    @test.assertNotVisible '#forceSubmit', 'Force submit button has been hidden'
+    @test.assertVisible '#submit', 'Submit button is visible again'
+    ###
+        - permit forcing a booking with incomplete data
+    ###
+
+
     @test.info 'Testing tabs'
+    ###
+        - bbq
+        - tab controls should show which tab is active
+        - table should initially be hidden
+        - tabs permit swapping between table view and form view
+        - when a new item is added, the table tab should glow
+        - switching to the table tab will stop the glow
+        - switching tabs will change the url
+        - loading from the changed url will set the correct tab
+    ###
+
     @test.info 'Testing table'
+    ###
+        Later:
+        - purty CSS!
+        - cross browser testing inc ie8
+            - forEach
+            - JSON.stringify / parse?
+    ###
 
     @test.info 'Testing storage'
     @evaluate ->
@@ -106,20 +171,6 @@ casper.start url, ->
                     __utils__.findOne('#listings tbody tr:first-child select').value
                 , 'Seated', 'Status should still be \'Seated\' after a reload'
 
-    ###
-        TODO
-        - ensure bookings stay in order
-        - tab controls
-        - bbq
-
-        Later:
-        - jQuery UI datepicker
-        - purty CSS!
-        - Validation strategy pattern
-        - reset form: clears form, errors
-        - permit forcing a booking with incomplete data
-        - cross browser testing inc ie8
-    ###
 # Light the fuse
 casper.run ->
     @exit()

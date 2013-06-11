@@ -22,6 +22,10 @@
                 }
             }
 
+            if (!valid) {
+                App.publish('validationError');
+            }
+
             return valid;
 
         };
@@ -33,8 +37,23 @@
             if (!fields[field]) return false;
 
             if (fields[field].required && !value) {
-                App.publish('validationError:' + field, field + ' is required but empty' );
+                App.publish('validationError:' + field, 'This field is required but empty' );
                 return false;
+            }
+
+            if (fields[field].type) {
+                switch(fields[field].type) {
+                    case 'number':
+                        if (! /^\d+$/.test(value)) App.publish('validationError:' + field, 'This field expects a number');
+                        break;
+                    case 'date':
+                        if (! /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value)) App.publish('validationError:' + field, 'This field expects a date in this format: dd/mm/yyyy');
+                        break;
+                    case 'email':
+                        // http://davidcel.is/blog/2012/09/06/stop-validating-email-addresses-with-regex/
+                        if (! /@/.test(value)) App.publish('validationError:' + field, 'This field expects an email address');
+                        break;
+                }
             }
 
             return true;

@@ -25,14 +25,15 @@
             'fields': {
                 'first_name':   { required: true },
                 'last_name':    { required: true },
-                'dining_date':  { required: true },
-                'num_covers':   { required: true },
+                'dining_date':  { required: true, type: 'date' },
+                'num_covers':   { required: true, type: 'number' },
                 'phone':        { required: true },
-                'email':        { required: true },
+                'email':        { required: true, type: 'email' },
             }
         });
 
         formView.bindErrors();
+        formView.el.find('#dining_date').datepicker();
 
         bookingStore.getItems().forEach(addBooking);
 
@@ -41,7 +42,7 @@
         }
 
         function onNewParty(_, attrs) {
-            formView.clearForm();
+            formView.resetForm();
             bookingStore.add(attrs);
             addBooking(attrs);
         }

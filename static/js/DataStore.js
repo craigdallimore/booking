@@ -6,8 +6,6 @@
 
     DataStore.prototype.add = function set(item) {
 
-        console.log('add', item);
-
         var storeName = this.storeName;
 
         if (Modernizr.localstorage) {

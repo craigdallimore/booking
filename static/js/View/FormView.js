@@ -28,6 +28,11 @@
                     view.bindError(field, $field);
                 }
 
+                App.subscribe('validationError', function() {
+                    view.el.find('#submit').hide();
+                    view.el.find('#forceSubmit').show();
+                });
+
             };
 
             view.bindError = function bindError(field, $field) {
@@ -42,20 +47,31 @@
 
             };
 
-            view.clearErrors = function clearErrors() {
-                el.find('.error').removeClass('error');
-                el.find('.fieldError').remove();
-            };
-
-            view.clearForm = function clearForm() {
+            view.resetForm = function resetForm() {
                 el.find('#reset').trigger('click');
             };
 
             el.on('submit', function(e) {
                 e.preventDefault();
+
                 var values = view.getFieldValues();
-                view.clearErrors();
+                view.resetForm();
                 App.publish('submit:party', [values]);
+            });
+
+            el.find('#forceSubmit').on('click', function(e) {
+                e.preventDefault();
+
+                var values = view.getFieldValues();
+                view.resetForm();
+                App.publish('newParty', [values]);
+            });
+
+            el.on('reset', function() {
+                el.find('#forceSubmit').hide();
+                el.find('#submit').show();
+                el.find('.error').removeClass('error');
+                el.find('.fieldError').remove();
             });
 
             el.attr('novalidate', true);

@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= dirs.dist %>app.min.js': [
+                        '<%= dirs.js %>libs/jquery-ui-1.10.3.custom.min.js',
                         '<%= dirs.js %>App.js',
                         '<%= dirs.js %>DataStore.js',
                         '<%= dirs.js %>PubSub.js',
