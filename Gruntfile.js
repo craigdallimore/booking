@@ -29,6 +29,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= dirs.dist %>app.min.js': [
+                        //'<%= dirs.js %>libs/jquery.ba-bbq.min.js',
                         '<%= dirs.js %>libs/jquery-ui-1.10.3.custom.min.js',
                         '<%= dirs.js %>App.js',
                         '<%= dirs.js %>DataStore.js',
@@ -37,6 +38,7 @@ module.exports = function(grunt) {
                         '<%= dirs.js %>Model/Model.js',
                         '<%= dirs.js %>Model/PartyModel.js',
                         '<%= dirs.js %>Model/BookingModel.js',
+                        '<%= dirs.js %>Model/TabsModel.js',
                         '<%= dirs.js %>View/View.js',
                         '<%= dirs.js %>View/FormView.js',
                         '<%= dirs.js %>View/ListView.js',
