@@ -3,6 +3,7 @@ url = 'http://localhost:3000/'
 dummy_booking = require './tests/dummy/booking.js'
 
 casper.start url, ->
+
     currentUrl = @getCurrentUrl()
     expectedUrl = url
 
@@ -70,13 +71,19 @@ casper.start url, ->
     @test.assertTextDoesntExist 'required', 'Resetting form clears error messages'
 
     @fill '#booking form'
-        dining_date: 'not_a_date'
-        email: 'not_an_email'
+        first_name:     dummy_booking.first_name
+        last_name:      dummy_booking.last_name
+        dining_date:    'not_a_date'
+        num_covers:     dummy_booking.num_covers
+        phone:          dummy_booking.phone
+        email:          'not_an_email'
 
     @click '#submit'
 
     @test.assertTextExists 'expects an email', 'The email field rejects emails without an \'@\' symbol'
     @test.assertTextExists 'expects a date', 'The date field rejects a date not formatted 12/12/1981'
+
+    @click '#reset'
 
     @fill '#booking form',
         dining_date:    dummy_booking.dining_date
@@ -104,6 +111,10 @@ casper.start url, ->
 
     @test.assertNotVisible '#forceSubmit', 'Force submit button has been hidden'
     @test.assertVisible '#submit', 'Submit button is visible again'
+
+    @test.info 'Clearing localStorage'
+    @evaluate ->
+        localStorage.clear()
 
 
 # Light the fuse
