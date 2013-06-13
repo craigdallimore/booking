@@ -55,7 +55,7 @@
 
                     case 'date':
                         if (! /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value)) {
-                            App.publish('validationError:' + field, 'This field expects a date in this format: dd/mm/yyyy');
+                            App.publish('validationError:' + field, 'This field expects a date in this format: mm/dd/yyyy');
                             valid = false;
                         }
                         break;
