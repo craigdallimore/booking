@@ -51,11 +51,16 @@
                 el.find('#reset').trigger('click');
             };
 
+            view.clearErrors = function clearErrors() {
+                el.find('.error').removeClass('error');
+                el.find('.fieldError').remove();
+            },
+
             el.on('submit', function(e) {
                 e.preventDefault();
 
                 var values = view.getFieldValues();
-                view.resetForm();
+                view.clearErrors();
                 App.publish('submit:party', [values]);
             });
 
@@ -63,18 +68,18 @@
                 e.preventDefault();
 
                 var values = view.getFieldValues();
-                view.resetForm();
+                view.clearErrors();
                 App.publish('newParty', [values]);
             });
 
             el.on('reset', function() {
                 el.find('#forceSubmit').hide();
                 el.find('#submit').show();
-                el.find('.error').removeClass('error');
-                el.find('.fieldError').remove();
+                view.clearErrors();
             });
 
             el.attr('novalidate', true);
+            el.find('#forceSubmit').hide();
 
         return view;
     }

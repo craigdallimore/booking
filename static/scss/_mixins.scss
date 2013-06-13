@@ -89,4 +89,47 @@ $grid: 10px;
     transition: $property $duration ease-in-out;
 }
 
+// Keyframe
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes $animation_name {
+        @content;
+    }
+    @-moz-keyframes $animation_name {
+        @content;
+    }
+    @-o-keyframes $animation_name {
+        @content;
+    }
+    @keyframes $animation_name {
+        @content;
+    }
+}
+@mixin animation ($delay, $duration, $iteration, $direction, $animation) {
+    -webkit-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+    -webkit-animation-iteration-count: $iteration;
+    -webkit-animation-direction: $direction;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-delay: $delay;
 
+    -moz-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+    -moz-animation-iteration-count: $iteration;
+    -moz-animation-direction: $direction;
+    -moz-animation-duration: $duration;
+    -moz-animation-delay: $delay;
+    -moz-animation-name: $animation;
+
+    -o-animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+    -o-animation-iteration-count: $iteration;
+    -o-animation-direction: $direction;
+    -o-animation-duration: $duration;
+    -o-animation-delay: $delay;
+    -o-animation-name: $animation;
+
+    animation-fill-mode: forwards; /* this prevents the animation from restarting! */
+    animation-iteration-count: $iteration;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-name: $animation;
+}

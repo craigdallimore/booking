@@ -1,0 +1,19 @@
+@import "_mixins";
+
+table {
+
+    background: darken($clr_theme_2, 10%);
+    width: 90%;
+    margin: 15px 5% 0;
+
+
+    thead {
+        background: darken($clr_theme_2, 20%);
+    }
+    th, td {
+        padding: 15px;
+        border: 2px solid $clr_bdr;
+        text-align: center;
+    }
+
+}

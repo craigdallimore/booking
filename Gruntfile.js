@@ -15,7 +15,13 @@ module.exports = function(grunt) {
                     '<%= dirs.css %>base/reset.css',
                     '<%= dirs.css %>base/common.css',
                     '<%= dirs.css %>base/typography.css',
-                    '<%= dirs.css %>base/sprites.css'
+                    '<%= dirs.css %>base/sprites.css',
+                    '<%= dirs.css %>layout/body.css',
+                    '<%= dirs.css %>layout/canvas.css',
+                    '<%= dirs.css %>modules/tabs.css',
+                    '<%= dirs.css %>modules/form.css',
+                    '<%= dirs.css %>modules/table.css',
+                    '<%= dirs.css %>modules/error.css'
                 ],
                 dest: '<%= dirs.dist %>app.concat.css'
             }
@@ -23,13 +29,14 @@ module.exports = function(grunt) {
         uglify: {
             dev: {
                 options: {
-                    sourceMapRoot: '../../',
-                    sourceMap: '<%= dirs.dist %>app.min.js.map',
+                    //sourceMapRoot: '../../',
+                    //sourceMap: '<%= dirs.dist %>app.min.js.map',
                     mangle: false
                 },
                 files: {
                     '<%= dirs.dist %>app.min.js': [
                         //'<%= dirs.js %>libs/jquery.ba-bbq.min.js',
+                        '<%= dirs.js %>shim.js',
                         '<%= dirs.js %>libs/jquery-ui-1.10.3.custom.min.js',
                         '<%= dirs.js %>App.js',
                         '<%= dirs.js %>DataStore.js',
@@ -60,7 +67,8 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     config: './config.rb',
-                    basePath: '<%= dirs.static %>'
+                    sassDir: '<%= dirs.scss %>',
+                    cssDir: '<%= dirs.css %>'
                 }
             }
         },

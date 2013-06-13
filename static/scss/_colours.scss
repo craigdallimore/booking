@@ -1,7 +1,23 @@
-$clr_bg: #ff0000;
+$clr_theme_1: #6A999A;  // teal
+$clr_theme_2: #eee;     // white
+$clr_theme_3: #004;     // blue
 
-$clr_link: #00ff00;
-$clr_link_hover: #33ff33;
-$clr_link_active: #55ff55;
+$clr_bg_body: $clr_theme_2;
+$clr_text_body: #222;
+$clr_bdr: #333;
+
+$clr_link: $clr_text_body;
+$clr_link_hover: lighten($clr_link, 5%);
+$clr_link_active: darken($clr_link, 5%);
 
 $clr_error: #f00;
+
+$clr_bg_tabs: #999;
+$clr_bg_current: darken($clr_theme_2, 10%);
+
+$clr_bg_error: #c66;
+
+
+//FORM
+$bdr_input: $clr_bdr;
+$clr_input: #333;

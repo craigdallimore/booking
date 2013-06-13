@@ -64,6 +64,8 @@ casper.start url, ->
     @click '#submit'
     @test.assertTextExists 'required', 'Validation messages are showing'
 
+    @test.assertEquals dummy_booking.first_name, @getFormValues('#booking form').first_name, 'The fields that were filled out were not cleared'
+
     @click '#reset'
     @test.assertTextDoesntExist 'required', 'Resetting form clears error messages'
 

@@ -34,7 +34,7 @@
 
                     if (tabs[tab] === 'visible') {
                         tabEl.style.display = 'block';
-                        $('a[href$="' + tab + '"]').addClass('current');
+                        $('a[href$="' + tab + '"]').parent().addClass('current');
                     } else {
                         tabEl.style.display = 'none';
                     }

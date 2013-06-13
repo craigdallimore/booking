@@ -5,7 +5,11 @@
 
             function createTD(textContent) {
                 var td = document.createElement('td');
-                td.textContent = textContent;
+                if(typeof td.textContent !== 'undefined') {
+                    td.textContent = textContent;
+                } else {
+                    td.innerText = textContent;
+                }
                 return td;
             }
 
@@ -14,8 +18,13 @@
             var optNotArrived = document.createElement('option');
             var optSeated =     document.createElement('option');
             var selTD =         document.createElement('td');
-            optNotArrived.value = optNotArrived.textContent = 'Not Arrived';
-            optSeated.value = optSeated.textContent = 'Seated';
+                if(typeof selTD.textContent !== 'undefined') {
+                optNotArrived.value = optNotArrived.textContent = 'Not Arrived';
+                optSeated.value = optSeated.textContent = 'Seated';
+            } else {
+                optNotArrived.value = optNotArrived.innerText = 'Not Arrived';
+                optSeated.value = optSeated.innerText = 'Seated';
+            }
 
             select.appendChild(optNotArrived);
             select.appendChild(optSeated);

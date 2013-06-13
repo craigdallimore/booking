@@ -1,0 +1,48 @@
+@import "_mixins";
+
+.tabs {
+
+    width: 300px;
+    border: 3px solid $clr_bdr;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+
+    a {
+        display: block;
+        padding: 15px;
+        border-right: 3px solid $clr_bdr;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    li {
+        float: left;
+        width: 50%;
+
+        &:last-child a {
+            border-right: none;
+        }
+    }
+
+    .current a {
+        background: $clr_bg_current;
+    }
+
+    .newItem {
+        @include animation(0, 1s, infinite, alternate, newItem);
+        a {
+            font-weight: bold;
+        }
+    }
+
+}
+
+@include keyframe(newItem) {
+    0% {
+        background: lighten($clr_theme_1, 10);
+    }
+    100% {
+        background: lighten($clr_theme_2, 20);
+    }
+}

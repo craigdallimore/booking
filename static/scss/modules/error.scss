@@ -1,5 +1,15 @@
-@import '_mixins';
+@import "_mixins";
 
 .error {
     border: 1px solid $clr_error;
+}
+
+.fieldError {
+    margin: 0px auto;
+    display: block;
+    width: 255px;
+    color: $clr_theme_2;
+    padding: 10px;
+    background: $clr_bg_error;
+
 }

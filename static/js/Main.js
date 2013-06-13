@@ -71,12 +71,10 @@
         }
 
         function onTabClick(_, tabName) {
-            console.log('onTabClick', tabName);
             tabsModel.changeTab(tabName);
         }
 
         function onTabChange() {
-            console.log('onTabChange');
             tabsView.refreshTabs();
         }
 

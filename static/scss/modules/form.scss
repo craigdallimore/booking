@@ -1,0 +1,98 @@
+@import "_mixins";
+
+form {
+    width: 600px;
+    margin: 45px auto 0;
+
+    h2 {
+        text-align: center;
+    }
+
+}
+
+input[type='text'], input[type='email'], input[type='number'], input[type='tel'] {
+    @include transition(all, 150ms);
+    @include border-radius(25px);
+    text-shadow: 0 2px 2px rgba(0,0,0,.2);
+    outline: none;
+    font-size: 1.5em;
+    padding: 10px 15px;
+    margin: 5px auto 0;
+    width: 300px;
+    border: 3px solid $bdr_input;
+    color: $clr_input;
+    display: block;
+    &:focus {
+        @include box-shadow(0 0 25px rgba(255,255,255,0.4));
+        border: 3px solid $clr_theme_1;
+    }
+}
+input[type='submit'], input[type="reset"], #forceSubmit {
+    @include transition(all, 150ms);
+    @include border-radius(25px);
+    @include linear-gradient($clr_theme_1, darken($clr_theme_1, 10%), 1);
+    outline: none;
+    -moz-outline: none;
+    color: $clr_theme_2;
+    cursor: pointer;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+    border: 2px solid darken($clr_theme_1, 5%);
+    text-align:center;
+    width: 200px;
+    margin: 20px auto;
+    display: block;
+    padding: 10px;
+    font-size: 1.5em;
+    &:focus, &:hover {
+        @include box-shadow(0 0 25px rgba(255,255,255,0.4));
+        @include linear-gradient(lighten($clr_theme_1, 10%), $clr_theme_1, 1);
+        border: 2px solid $clr_theme_3;
+    }
+    &:active {
+        @include box-shadow('inset 0 2px 5px rgba(0,0,0,.3), 0 0 20px rgba(255,255,255,0.6)');
+        background: darken($clr_theme_1, 5%);
+    }
+    &:disabled {
+        @include box-shadow(none);
+        text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+        color: #ccc;
+        background: #aaa;
+        border: 2px solid #444;
+    }
+}
+
+input[type="submit"] {
+    @include linear-gradient(darken($clr_theme_1, 15%), darken($clr_theme_1, 20%), 1);
+}
+
+#forceSubmit {
+    //display: none;
+}
+
+label {
+    text-align: center;
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+    margin: 10px 0 0;
+
+}
+
+
+
+@media all and (max-width: $bp_1), all and (max-device-width: $bp_1) {
+    form {
+        width: 100%;
+        padding: 1em;
+        margin: 0;
+    }
+}
+
+@media all and (max-width: $bp_2), all and (max-device-width: $bp_2) {
+
+}
+
+@media all and (max-width: $bp_3), all and (max-device-width: $bp_3) {
+
+}
+
